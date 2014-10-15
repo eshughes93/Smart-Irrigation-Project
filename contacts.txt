@@ -1,0 +1,39 @@
+Smart Irrigation Project for CMPS 115, Fall 2014
+
+Project overview:
+    To create a self-contained, scalable, autonomous irrigation system for use in urban and commercial farms. The system must be easy to use (if user interaction is necessary), environmentally smart (don't water too much), and RELIABLE. Builds off of a former project at Natural Bridges High School.
+
+
+Sponsor:
+    Kevin Bell?
+        kwbell@ucsc.edu
+        IDEASS
+
+
+Team members:
+
+    Ian Hamilton
+        iahamilt@ucsc.edu
+        About:
+    
+    Evan Hughes
+        eshughes@ucsc.edu
+        About:
+    
+    Rashad K
+        rkayed@ucsc.edu
+        About:
+
+    Alex Mitchell
+        ajmitche@ucsc.edu
+        About:
+           I am a Computer Science B.A. and Earth Science B.S. double major in my last quarter. I program primarily in Python, but I am experienced in C++ and C. I have little experience with electrical engineering (took CMPE 12 two years ago), but I am very interested in learning the basics with Arduinos or similar. This project looks really cool and I'm excited to be a part of this team!
+
+    Alesandra Roger
+        aroger1@ucsc.edu
+        About:
+
+    Yugraj ?
+        ysingh@ucsc.edu
+        About:
+???
