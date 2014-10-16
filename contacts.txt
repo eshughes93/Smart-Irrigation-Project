@@ -1,7 +1,11 @@
 Smart Irrigation Project for CMPS 115, Fall 2014
 
 Project overview:
-    To create a self-contained, scalable, autonomous irrigation system for use in urban and commercial farms. The system must be easy to use (if user interaction is necessary), environmentally smart (don't water too much), and RELIABLE. Builds off of a former project at Natural Bridges High School.
+    To create a self-contained, scalable, autonomous irrigation system 
+    for use in urban and commercial farms. The system must be easy to use 
+    (if user interaction is necessary), environmentally smart (don't water
+    too much), and RELIABLE. Builds off of a former project at Natural 
+    Bridges High School.
 
 
 Sponsor:
@@ -19,6 +23,9 @@ Team members:
     Evan Hughes
         eshughes@ucsc.edu
         About:
+	   Computer Science B.S. major. The majority of my programming experience has been in C and C++,
+	   though I pick up on new things very quickly. I'm thoroughly looking forward to working on this
+	   project because I think we're all going to learn a lot!
     
     Rashad K
         rkayed@ucsc.edu
@@ -33,7 +40,7 @@ Team members:
         aroger1@ucsc.edu
         About:
 
-    Yugraj ?
+    Yugraj Singh
         ysingh@ucsc.edu
         About:
 ???
