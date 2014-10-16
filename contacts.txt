@@ -27,7 +27,7 @@ Team members:
     Alex Mitchell
         ajmitche@ucsc.edu
         About:
-           I am a Computer Science B.A. and Earth Science B.S. double major in my last quarter. I program primarily in Python, but I am experienced in C++ and C. I have little experience with electrical engineering (took CMPE 12 two years ago), but I am very interested in learning the basics with Arduinos or similar. This project looks really cool and I'm excited to be a part of this team!
+           I am a Computer Science B.A. and Earth Science B.S. double major in my last quarter. I program primarily in Python, but I am experienced in C++ and C. I have little experience with electrical engineering (took CMPE 12 two years ago and E&M physics like 6 years ago), but I am very interested in learning the basics with Arduinos or similar. This project looks really cool and I'm excited to be a part of this team!
 
     Alesandra Roger
         aroger1@ucsc.edu
