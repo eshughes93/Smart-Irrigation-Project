@@ -5,7 +5,7 @@
 #include "generic_sensor.h"
 
 class TestSensor : public MoistureSensor{
-	// A test class assuming a simple analog sensor.
+  // A test class assuming a simple analog sensor.
   private:
   
   public:
@@ -15,7 +15,7 @@ class TestSensor : public MoistureSensor{
 };
 
 class WatermarkSensor : public MoistureSensor{
-	// Controls the Watermark Sensor (Gypsum block).
+  // Controls the Watermark Sensor (Gypsum block).
 
   private:
   

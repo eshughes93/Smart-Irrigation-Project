@@ -4,7 +4,7 @@
 #include <Arduino.h>
 
 class MoistureSensor{
-	// Base class for all moisture sensors.
+  // Base class for all moisture sensors.
 
   protected:
     int m_pin; // Arduino pin number 
@@ -15,7 +15,7 @@ class MoistureSensor{
     int* m_data; // assuming the data will be integers
   
     MoistureSensor(int input_pin);
-		//MoistureSensor(int input_pin_1, int input_pin_2, int input_pin_2);
+    //MoistureSensor(int input_pin_1, int input_pin_2, int input_pin_2);
   public:
     virtual void update()=0;
     virtual boolean is_dry()=0;

@@ -3,24 +3,25 @@
 
 #include "generic_sensor.h"
 #include "moisture_sensors.h"
+#include "generic_water_controller.h"
+#include "water_controllers.h"
 
 // Arduino variables
 const int MOISTURE_SENSOR_PIN = 0;
-int SLEEP_TIME = 1000; // 5 seconds
+int SLEEP_TIME = 1000; // 1 seconds
 const int TESTING_PIN = 13; // For testing... Light up the pin 13 blue LED
 
 // Components
 MoistureSensor* moisture_sensor;
-// WaterController* water_controller... etc.
+WaterController* water_controller;
+//... etc.
 
 void setup(){
   // Initialize the components of SIP
   moisture_sensor = new TestSensor(MOISTURE_SENSOR_PIN);
-  // new WaterController...
+  water_controller = new TestWaterController(TESTING_PIN);
   // new solar controller? wifi_controller? etc.
   
-  // Testing... Light up the pin 13 blue LED
-  pinMode(TESTING_PIN, OUTPUT);
 }
 
 void loop(){
@@ -32,22 +33,8 @@ void loop(){
   // Double blink if the potentiometer reads higher values.
   // Single blink if it reads lower values
   if (moisture_sensor->is_dry()){
-    // release water!
-  
-    // Testing...
-    digitalWrite(TESTING_PIN, HIGH);
-    delay(100);
-    digitalWrite(TESTING_PIN, LOW);
-    delay(100);
-    digitalWrite(TESTING_PIN, HIGH);
-    delay(100);
-    digitalWrite(TESTING_PIN, LOW);
-  } else {
-    // Testing...
-    digitalWrite(TESTING_PIN, HIGH);
-    delay(100);
-    digitalWrite(TESTING_PIN, LOW);
-  } 
+    water_controller->water_plants();
+  }
 
   delay(SLEEP_TIME);
 }
