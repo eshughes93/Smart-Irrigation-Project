@@ -1,11 +1,12 @@
 // Smart Irrigation Project
 // cmps 115 Fall 2014
 
-#include "moisture_sensor.h"
+#include "generic_sensor.h"
+#include "moisture_sensors.h"
 
 // Arduino variables
 const int MOISTURE_SENSOR_PIN = 0;
-int SLEEP_TIME = 5000; // 5 seconds
+int SLEEP_TIME = 1000; // 5 seconds
 const int TESTING_PIN = 13; // For testing... Light up the pin 13 blue LED
 
 // Components
@@ -14,7 +15,7 @@ MoistureSensor* moisture_sensor;
 
 void setup(){
   // Initialize the components of SIP
-  moisture_sensor = new MoistureSensor(MOISTURE_SENSOR_PIN);
+  moisture_sensor = new TestSensor(MOISTURE_SENSOR_PIN);
   // new WaterController...
   // new solar controller? wifi_controller? etc.
   

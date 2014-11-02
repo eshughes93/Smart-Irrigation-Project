@@ -1,14 +1,12 @@
 #include <Arduino.h>
-#include "moisture_sensor.h"
+#include "moisture_sensors.h"
+#include "generic_sensor.h"
 
-MoistureSensor::MoistureSensor(int input_pin) {
-  m_pin = input_pin;
-  m_max_data_count = 100;
-  m_data_count = 0;
-  m_data = new int[m_max_data_count]; // Create the data array
+/*** TestSensor functions ***/
+TestSensor::TestSensor(int input_pin) : MoistureSensor(input_pin) {
 }
 
-void MoistureSensor::update() {
+void TestSensor::update() {
   // Do any required updating for the sensor. This will only be called 
   // once per loop.
 	
@@ -24,7 +22,7 @@ void MoistureSensor::update() {
   }
 }
 
-boolean MoistureSensor::is_dry(){
+boolean TestSensor::is_dry(){
   // Check the last moisture reading to see if the ground is too dry.
   // Return true if the soil is too dry and needs water.
   // Return false if the soil has enough water.
@@ -40,4 +38,16 @@ boolean MoistureSensor::is_dry(){
   } else {
     return false;
   }
+}
+
+
+
+/*** WatermarkSensor functions ***/
+WatermarkSensor::WatermarkSensor(int input_pin) : MoistureSensor(input_pin){
+}
+
+void WatermarkSensor::update() {
+}
+
+boolean WatermarkSensor::is_dry(){
 }
