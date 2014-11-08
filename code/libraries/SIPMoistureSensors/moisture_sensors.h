@@ -2,7 +2,7 @@
 #define MOISTURE_SENSORS_H
 
 #include <Arduino.h>
-#include "generic_sensor.h"
+#include "generic_moisture_sensor.h"
 
 class TestSensor : public MoistureSensor{
   // A test class assuming a simple analog sensor.

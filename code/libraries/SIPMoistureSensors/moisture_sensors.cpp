@@ -1,6 +1,6 @@
 #include <Arduino.h>
 #include "moisture_sensors.h"
-#include "generic_sensor.h"
+#include "generic_moisture_sensor.h"
 
 /*** TestSensor functions ***/
 TestSensor::TestSensor(int input_pin) : MoistureSensor(input_pin) {

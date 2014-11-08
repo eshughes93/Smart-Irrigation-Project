@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include "generic_sensor.h"
+#include "generic_moisture_sensor.h"
 
 MoistureSensor::MoistureSensor(int input_pin) {
   m_pin = input_pin;

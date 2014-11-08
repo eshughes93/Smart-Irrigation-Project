@@ -1,7 +1,7 @@
 // Smart Irrigation Project
 // cmps 115 Fall 2014
 
-#include "generic_sensor.h"
+#include "generic_moisture_sensor.h"
 #include "moisture_sensors.h"
 #include "generic_water_controller.h"
 #include "water_controllers.h"
