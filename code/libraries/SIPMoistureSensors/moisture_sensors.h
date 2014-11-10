@@ -9,8 +9,8 @@
 class TestSensor : public MoistureSensor{
   // A test class assuming a simple analog sensor.
   private:
-		int m_pin; // Arduino pin number.
-		DataStream<int>* m_data;
+    int m_pin; // Arduino pin number.
+    DataStream<int>* m_data;
   
   public:
     TestSensor(int input_pin);
@@ -22,7 +22,7 @@ class WatermarkSensor : public MoistureSensor{
   // Controls the Watermark Sensor (Gypsum block).
 
   private:
-		DataStream<int>* m_data;
+    DataStream<int>* m_data;
   
   public:
     WatermarkSensor(int input_pin);

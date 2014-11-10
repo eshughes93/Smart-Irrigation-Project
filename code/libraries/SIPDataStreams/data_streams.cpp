@@ -16,7 +16,7 @@
 /*** ArrayDataStream functions ***/
 template <class DataType>
 ArrayDataStream<DataType>::ArrayDataStream(int max_length):
-	DataStream<DataType>()
+  DataStream<DataType>()
 {
   m_next_index = 0;
   m_overwriting = false;
@@ -37,7 +37,7 @@ void ArrayDataStream<DataType>::add_data(DataType new_data){
       m_next_index = 0;
       m_overwriting = true;
     }
-	}
+  }
 }
 
 template <class DataType>
@@ -47,7 +47,7 @@ DataType ArrayDataStream<DataType>::get_last_data(){
     return m_data_array[m_max_length - 1];
   } else {
     return m_data_array[m_next_index - 1];
-	}
+  }
 }
 
 template <class DataType>

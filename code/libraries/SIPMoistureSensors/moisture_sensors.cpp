@@ -6,17 +6,17 @@
 
 /*** TestSensor functions ***/
 TestSensor::TestSensor(int input_pin) : MoistureSensor() {
-	m_data = new ArrayDataStream<int>(m_max_data_count);
+  m_data = new ArrayDataStream<int>(m_max_data_count);
 }
 
 void TestSensor::update() {
   // Do any required updating for the sensor. This will only be called 
   // once per loop.
-	
+  
   // Read in data from the sensor
   int new_data = analogRead(m_pin);
 
-	m_data->add_data(new_data);
+  m_data->add_data(new_data);
 }
 
 boolean TestSensor::is_dry(){
