@@ -1,3 +1,9 @@
+#include <data_streams.h>
+#include <generic_data_stream.h>
+
+#include <generic_moisture_sensor.h>
+#include <moisture_sensors.h>
+
 // Smart Irrigation Project
 // cmps 115 Fall 2014
 

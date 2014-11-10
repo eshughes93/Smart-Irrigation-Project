@@ -1,9 +1,12 @@
 #include <Arduino.h>
 #include "moisture_sensors.h"
 #include "generic_moisture_sensor.h"
+#include "generic_data_stream.h"
+#include "data_streams.h"
 
 /*** TestSensor functions ***/
-TestSensor::TestSensor(int input_pin) : MoistureSensor(input_pin) {
+TestSensor::TestSensor(int input_pin) : MoistureSensor() {
+	m_data = new ArrayDataStream<int>(m_max_data_count);
 }
 
 void TestSensor::update() {
@@ -13,13 +16,7 @@ void TestSensor::update() {
   // Read in data from the sensor
   int new_data = analogRead(m_pin);
 
-  // Add data to the data array
-  if (m_data_count < m_max_data_count) {
-    m_data[m_data_count] = new_data;
-    m_data_count++;
-  } else {
-    // Data overflow... Ignore new data? Forget old data?
-  }
+	m_data->add_data(new_data);
 }
 
 boolean TestSensor::is_dry(){
@@ -32,7 +29,7 @@ boolean TestSensor::is_dry(){
   // intervals.
 
   // Do some actual calculations... the following code is for testing with a potentiometer.
-  int last_data = m_data[m_data_count - 1];
+  int last_data = m_data->get_last_data();
   if (last_data < 512) {
     return true;
   } else {
@@ -43,7 +40,7 @@ boolean TestSensor::is_dry(){
 
 
 /*** WatermarkSensor functions ***/
-WatermarkSensor::WatermarkSensor(int input_pin) : MoistureSensor(input_pin){
+WatermarkSensor::WatermarkSensor(int input_pin) : MoistureSensor(){
 }
 
 void WatermarkSensor::update() {
