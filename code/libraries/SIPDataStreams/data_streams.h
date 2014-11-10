@@ -1,7 +1,6 @@
 #ifndef DATA_STREAMS_H
 #define DATA_STREAMS_H
 
-#include <Arduino.h>
 #include "generic_data_stream.h"
 
 /* ArrayDataStream is a type of data stream which uses an array to 
@@ -13,21 +12,21 @@
 
 template<typename DataType>
 class ArrayDataStream : public DataStream<DataType> {
-	private:
-		int m_next_index;
-		boolean m_overwriting;
-		int m_max_length;
-		DataType* m_data_array;
+  private:
+    int m_next_index;
+    bool m_overwriting;
+    int m_max_length;
+    DataType* m_data_array;
 
-	public:
-		ArrayDataStream(int length);
+  public:
+    ArrayDataStream(int max_length);
 
-		void add_data(DataType new_data);
-		DataType get_last_data();
-		DataType get_data(int time_index);
+    void add_data(DataType new_data);
+    DataType get_last_data();
+    DataType get_data(int index_from_oldest);
 
-		int get_data_count();
-		int get_max_length();
+    int get_data_count();
+    int get_max_length();
 };
 
 // Linked list .....

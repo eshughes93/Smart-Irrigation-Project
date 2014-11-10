@@ -19,12 +19,13 @@
 
 template<typename DataType>
 class DataStream {
-	public:
-		DataStream() {}
-		virtual void add_data(DataType value)=0;
-		virtual DataType get_last_data()=0;
-		virtual DataType get_data(int time_index)=0;
-		virtual int get_length()=0;
+  public:
+    DataStream() {}
+    virtual void add_data(DataType value)=0;
+    virtual DataType get_last_data()=0;
+    virtual DataType get_data(int index_from_oldest)=0;
+    virtual int get_data_count()=0;
+    virtual int get_max_length()=0;
 };
 
 #endif
