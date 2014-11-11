@@ -10,14 +10,10 @@ OBJECTS=$(SOURCES:.cpp=.o)
 
 
 all: $(SOURCES) $(EXECUTABLE)
-	echo 1
 	
 $(EXECUTABLE): $(OBJECTS) 
-	echo 2
 	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
 
 .cpp.o:
-	echo 3 $@
-	echo 4 $+
 	$(CC) $(CFLAGS) $< -o $@
 
