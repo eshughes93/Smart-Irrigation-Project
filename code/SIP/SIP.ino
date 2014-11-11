@@ -1,21 +1,38 @@
-#include "sensor_arduino.cpp"
-//#include "water_arduino.cpp"
-#include "moisture_sensors.h"
-#include "water_controllers.h"
 
-Sensor_Arduino* arduino_sensor;
+#define TRUE 1
+#define FALSE 0
+#define USING_SENSOR_ARDUINO TRUE
+#define USING_WATER_ARDUINO (USING_SENSOR_ARDUINO == FALSE)
 
-void setup(){
-  //Initialize the WaterSensor and ArduinoSensor
-  //WaterSensor water_sensor = new WaterSensor();
-  arduino_sensor =  new Sensor_Arduino();
-}
+#if USING_SENSOR_ARDUINO
+  #include "sensor_arduino.cpp"
+  #include "moisture_sensors.h"
+  
+  Sensor_Arduino* arduino_sensor;
+  
+  void setup(){
+    //Initialize the WaterSensor and ArduinoSensor
+    arduino_sensor =  new Sensor_Arduino();
+  }
+    
+  void loop(){
+    arduino_sensor->loop();
+  }
 
+#else  
+  #include "water_arduino.cpp"
+  #include "water_controllers.h"
+  
+  WaterArduino* arduino_water;
+  
+  void setup(){
+    //Initialize the WaterSensor and ArduinoSensor
+    water_sensor = new WaterSensor();
+  }
+  
+  
+  void loop(){
+    water_sensor->loop();
+  }
 
-void loop(){
-  //water_sensor->loop();
-  arduino_sensor->loop();
-}
-
-
-
+#endif
