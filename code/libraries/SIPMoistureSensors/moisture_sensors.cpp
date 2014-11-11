@@ -1,8 +1,8 @@
 #include <Arduino.h>
 #include "moisture_sensors.h"
 #include "generic_moisture_sensor.h"
-#include "generic_data_stream.h"
-#include "data_streams.h"
+#include "../SIPDataStreams/generic_data_stream.h"
+#include "../SIPDataStreams/data_streams.h"
 
 /*** TestSensor functions ***/
 TestSensor::TestSensor(int input_pin) : MoistureSensor() {
