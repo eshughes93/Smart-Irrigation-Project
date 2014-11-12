@@ -1,7 +1,7 @@
 
 #define TRUE 1
 #define FALSE 0
-#define USING_SENSOR_ARDUINO TRUE
+#define USING_SENSOR_ARDUINO FALSE
 #define USING_WATER_ARDUINO (USING_SENSOR_ARDUINO == FALSE)
 
 #if USING_SENSOR_ARDUINO
@@ -27,12 +27,12 @@
   
   void setup(){
     //Initialize the WaterSensor and ArduinoSensor
-    water_sensor = new WaterSensor();
+    arduino_water = new WaterArduino();
   }
   
   
   void loop(){
-    water_sensor->loop();
+    arduino_water->loop();
   }
 
 #endif
