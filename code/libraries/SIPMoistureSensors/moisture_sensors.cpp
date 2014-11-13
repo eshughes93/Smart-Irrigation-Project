@@ -4,7 +4,7 @@
 
 /*** TestSensor functions ***/
 TestSensor::TestSensor(int input_pin) : MoistureSensor() {
-  m_data = new ArrayDataStream<int>(m_max_data_count);
+  m_data = new ArrayDataStream<float>(m_max_data_count);
 }
 
 void TestSensor::update() {
@@ -14,7 +14,7 @@ void TestSensor::update() {
   // Read in data from the sensor
   int new_data = analogRead(m_pin);
 
-  m_data->add_data(new_data);
+  m_data->add_data(float(new_data));
 }
 
 boolean TestSensor::is_dry(){
@@ -27,7 +27,7 @@ boolean TestSensor::is_dry(){
   // intervals.
 
   // Do some actual calculations... the following code is for testing with a potentiometer.
-  int last_data = m_data->get_last_data();
+  float last_data = m_data->get_last_data();
   if (last_data < 512) {
     return true;
   } else {
