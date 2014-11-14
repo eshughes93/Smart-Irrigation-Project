@@ -1,10 +1,14 @@
 #include <Arduino.h>
-#include "moisture_sensors.h"
+#include "test_sensor.h"
 #include "generic_moisture_sensor.h"
+#include "../SIPDataStreams/generic_data_stream.h"
+#include "../SIPDataStreams/data_streams.h"
 
 /*** TestSensor functions ***/
 TestSensor::TestSensor(int input_pin) : MoistureSensor() {
+	m_pin = input_pin;
   m_data = new ArrayDataStream<float>(m_max_data_count);
+	m_potentiometer_max = 1023.0;
 }
 
 void TestSensor::update() {
@@ -13,8 +17,8 @@ void TestSensor::update() {
   
   // Read in data from the sensor
   int new_data = analogRead(m_pin);
-
-  m_data->add_data(float(new_data));
+	float ratio = new_data / m_potentiometer_max;
+  m_data->add_data(ratio);
 }
 
 boolean TestSensor::is_dry(){
@@ -26,23 +30,16 @@ boolean TestSensor::is_dry(){
   // is not called here to ensure data is collected at uniform 
   // intervals.
 
-  // Do some actual calculations... the following code is for testing with a potentiometer.
+	// Do some actual calculations... For testing purposes, if it is 
+	// greater than 50%, then it is dry.
   float last_data = m_data->get_last_data();
-  if (last_data < 512) {
+  if (last_data > 0.5 ) {
     return true;
   } else {
     return false;
   }
 }
 
-
-
-/*** WatermarkSensor functions ***/
-WatermarkSensor::WatermarkSensor(int input_pin) : MoistureSensor(){
-}
-
-void WatermarkSensor::update() {
-}
-
-boolean WatermarkSensor::is_dry(){
+float TestSensor::get_saturation() {
+	return m_data->get_last_data();
 }
