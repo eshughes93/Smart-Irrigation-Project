@@ -40,8 +40,8 @@ To use:
 #include <Arduino.h>
 #include "generic_data_stream.h"
 #include "data_streams.h"
-//#include "generic_communication_controller.h"
-//#include specific communication_controller eg. "xbee_controller.h"
+#include "generic_communication_controller.h"
+#include "serial_controller.h" // specific communication controller
 
 // Code specific to each type of Arduino.
 #if USING == SENSOR_ARDUINO

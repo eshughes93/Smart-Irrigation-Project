@@ -6,59 +6,42 @@
 #include <generic_moisture_sensor.h>
 //#include <test_sensor.h>
 #include "slht5_adafruit_sensor.h"
+#include "generic_communication_controller.h"
+#include "serial_controller.h"
 
 class SensorArduino {
   public:
     // Arduino variables
-    int SLEEP_TIME; // 1 seconds
-    int MOISTURE_SENSOR_PIN_1;
-    int MOISTURE_SENSOR_PIN_2;
-    int MOISTURE_SENSOR_PIN_3;
+    int m_sleep_time;
 
     // Components
     MoistureSensor* moisture_sensor;
-    // CommunicationController* communication_controller;
+    CommunicationController* communication_controller;
     //... etc.
 
     SensorArduino() {
-      SLEEP_TIME = 1000; // 1 seconds
-      MOISTURE_SENSOR_PIN_1 = 0;
-      MOISTURE_SENSOR_PIN_2 = 1;
-      MOISTURE_SENSOR_PIN_3 = 2;
-      
+      m_sleep_time = 1000; // 1 seconds
+
+			// Pins used by the SLHT5 moisture sensor.
       int data_pin = 10;
       int clock_pin = 11;
       
       // Initialize the components of SIP
-			//moisture_sensor = new TestSensor(MOISTURE_SENSOR_PIN_1);
+      //moisture_sensor = new TestSensor(MOISTURE_SENSOR_PIN_1);
       moisture_sensor = new SLHT5Sensor(data_pin, clock_pin);
-      // communition_controller = new CommunicationController();
+      communication_controller = new SerialController();
       // new solar controller? wifi_controller? etc.
-      
-      Serial.begin(38400);
-      Serial.println("Starting...");
     }
 
     void loop(){
-      // Update the components if necessary.
+			// Update the components.
       moisture_sensor->update();
-      // communication_controller->update();
+      communication_controller->update();
       
-			float saturation_percent = moisture_sensor->get_saturation();
-			// communication_controller->moisture_level(saturation_percent);
+      // Send the new saturation percent over the network.
+      float saturation_percent = moisture_sensor->get_saturation();
+      communication_controller->send_saturation_level(saturation_percent);
 
-			// For testing purposes...
-      if (saturation_percent < 80){
-				// The ground is dry, send a message to water plants
-        Serial.print("Soil is dry. ");
-      } else {
-        Serial.print("Soil is wet. ");
-      }
-
-      Serial.print(" Saturation: ");
-      Serial.print(saturation_percent);
-      Serial.print("%\n");
-
-      delay(SLEEP_TIME);
+      delay(m_sleep_time);
     }
 };
