@@ -11,7 +11,6 @@ class MoistureSensor{
   public:
     virtual void update()=0;
 		virtual float get_saturation()=0;
-    virtual boolean is_dry()=0;
 };
 
 #endif

@@ -16,7 +16,7 @@ class WatermarkSensor : public MoistureSensor{
   public:
     WatermarkSensor(int input_pin);
     void update();
-    boolean is_dry();
+		float get_saturation();
 };
 
 #endif

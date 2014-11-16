@@ -44,19 +44,19 @@ class SensorArduino {
       moisture_sensor->update();
       // communication_controller->update();
       
-      if (moisture_sensor->is_dry()){
-        // The ground is dry, send a message to water plants
-        
-        // water_needed = moisture_sensor->get_water_needed();
-        // communication_controller->irrigate(water_needed);
+			float saturation_percent = moisture_sensor->get_saturation();
+			// communication_controller->moisture_level(saturation_percent);
 
+			// For testing purposes...
+      if (saturation_percent < 80){
+				// The ground is dry, send a message to water plants
         Serial.print("Soil is dry. ");
       } else {
         Serial.print("Soil is wet. ");
       }
 
       Serial.print(" Saturation: ");
-      Serial.print(moisture_sensor->get_saturation());
+      Serial.print(saturation_percent);
       Serial.print("%\n");
 
       delay(SLEEP_TIME);

@@ -17,7 +17,6 @@ class TestSensor : public MoistureSensor{
   public:
     TestSensor(int input_pin);
     void update();
-    boolean is_dry();
 		float get_saturation();
 };
 

@@ -17,27 +17,8 @@ void TestSensor::update() {
   
   // Read in data from the sensor
   int new_data = analogRead(m_pin);
-	float ratio = new_data / m_potentiometer_max;
-  m_data->add_data(ratio);
-}
-
-boolean TestSensor::is_dry(){
-  // Check the last moisture reading to see if the ground is too dry.
-  // Return true if the soil is too dry and needs water.
-  // Return false if the soil has enough water.
-  //
-  // Assumes that the update function was called recently. analogRead() 
-  // is not called here to ensure data is collected at uniform 
-  // intervals.
-
-	// Do some actual calculations... For testing purposes, if it is 
-	// greater than 50%, then it is dry.
-  float last_data = m_data->get_last_data();
-  if (last_data > 0.5 ) {
-    return true;
-  } else {
-    return false;
-  }
+	float percent = 100.0 * new_data / m_potentiometer_max;
+  m_data->add_data(percent);
 }
 
 float TestSensor::get_saturation() {

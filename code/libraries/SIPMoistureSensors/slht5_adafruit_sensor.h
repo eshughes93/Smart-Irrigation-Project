@@ -20,7 +20,6 @@ class SLHT5Sensor : public MoistureSensor{
   public:
     SLHT5Sensor(int data_pin, int clock_pin);
     void update();
-    boolean is_dry();
 		float get_saturation();
 };
 

@@ -11,5 +11,6 @@ WatermarkSensor::WatermarkSensor(int input_pin) : MoistureSensor(){
 void WatermarkSensor::update() {
 }
 
-boolean WatermarkSensor::is_dry(){
+float WatermarkSensor::get_saturation() {
+	return 0.0;
 }
