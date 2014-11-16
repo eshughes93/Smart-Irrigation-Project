@@ -4,8 +4,8 @@
 #include <Arduino.h>
 
 #include <generic_moisture_sensor.h>
-#include <test_sensor.h>
-
+//#include <test_sensor.h>
+#include "slht5_adafruit_sensor.h"
 
 class SensorArduino {
   public:
@@ -26,8 +26,12 @@ class SensorArduino {
       MOISTURE_SENSOR_PIN_2 = 1;
       MOISTURE_SENSOR_PIN_3 = 2;
       
+      int data_pin = 10;
+      int clock_pin = 11;
+      
       // Initialize the components of SIP
-      moisture_sensor = new TestSensor(MOISTURE_SENSOR_PIN_1);
+			//moisture_sensor = new TestSensor(MOISTURE_SENSOR_PIN_1);
+      moisture_sensor = new SLHT5Sensor(data_pin, clock_pin);
       // communition_controller = new CommunicationController();
       // new solar controller? wifi_controller? etc.
       
@@ -52,7 +56,7 @@ class SensorArduino {
       }
 
       Serial.print(" Saturation: ");
-      Serial.print(100 * moisture_sensor->get_saturation());
+      Serial.print(moisture_sensor->get_saturation());
       Serial.print("%\n");
 
       delay(SLEEP_TIME);

@@ -53,7 +53,9 @@ To use:
   // to change the include in sensor_arduino.cpp if you change this one!
   // Current options are:
   //   test_sensor.h, slht5_adafruit_sensor.h
-  #include "test_sensor.h"
+  //#include "test_sensor.h"
+  #include <SHT1x.h>
+  #include "slht5_adafruit_sensor.h"
 
   // Set the Arduino class that will be used.
   #define ARDUINO_CLASS SensorArduino
