@@ -1,5 +1,6 @@
 *.swp
 *.o
+*.ino~
 *.dia~
 *.autosave
 SHT1x-humidity-sensor
