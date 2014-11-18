@@ -5,3 +5,4 @@
 *.autosave
 SHT1x-humidity-sensor
 arduino-libraries
+.~lock.*
