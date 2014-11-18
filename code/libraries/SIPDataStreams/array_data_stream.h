@@ -35,8 +35,6 @@ class ArrayDataStream : public DataStream<DataType> {
     int get_max_length();
 };
 
-// Linked list .....
-
 #endif
 
 

@@ -1,7 +1,7 @@
 #include <iostream>
 
 #include "../generic_data_stream.h"
-#include "../data_streams.h"
+#include "../array_data_stream.h"
 
 using namespace std;
 

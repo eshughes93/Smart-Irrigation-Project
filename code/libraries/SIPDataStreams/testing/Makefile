@@ -1,11 +1,12 @@
 # Adapted from http://mrbook.org/tutorials/make/
 
-EXECUTABLE= test_me
-SOURCES=testing.cpp ../generic_data_stream.h ../data_streams.h ../data_streams.cpp
-#ARDUINODIR=/home/alex/hacking/arduino-1.0.6/hardware/arduino/cores/arduino
+EXECUTABLE= test_me_executable
+TESTFILE=stt_data_point_testing.cpp
+#TESTFILE=data_stream_testing.cpp
+SOURCES=${TESTFILE} ../generic_data_stream.h ../array_data_stream.h ../stt_data_point.h
 
 CC=g++
-CFLAGS=-c -Wall# -I$(ARDUINODIR)
+CFLAGS=-c -Wall
 OBJECTS=$(SOURCES:.cpp=.o)
 
 

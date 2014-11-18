@@ -6,3 +6,4 @@
 SHT1x-humidity-sensor
 arduino-libraries
 .~lock.*
+*_executable
