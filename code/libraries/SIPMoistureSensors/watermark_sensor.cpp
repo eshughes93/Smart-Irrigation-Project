@@ -2,7 +2,7 @@
 #include "watermark_sensor.h"
 #include "generic_moisture_sensor.h"
 #include "../SIPDataStreams/generic_data_stream.h"
-#include "../SIPDataStreams/data_streams.h"
+#include "../SIPDataStreams/array_data_stream.h"
 
 /*** WatermarkSensor functions ***/
 WatermarkSensor::WatermarkSensor(int input_pin) : MoistureSensor(){

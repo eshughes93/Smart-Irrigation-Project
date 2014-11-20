@@ -17,3 +17,10 @@ void SerialController::send_saturation_level(float saturation_percent) {
 	Serial.print(saturation_percent);
 	Serial.print("%\n");
 }
+
+void SerialController::send_temperature(float temperature) {
+	// Print the saturation percent to the serial port.
+	Serial.print("Temperature: ");
+	Serial.print(temperature);
+	Serial.print("%\n");
+}

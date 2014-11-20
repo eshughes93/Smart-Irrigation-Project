@@ -2,7 +2,7 @@
 #include "test_sensor.h"
 #include "generic_moisture_sensor.h"
 #include "../SIPDataStreams/generic_data_stream.h"
-#include "../SIPDataStreams/data_streams.h"
+#include "../SIPDataStreams/array_data_stream.h"
 
 /*** TestSensor functions ***/
 TestSensor::TestSensor(int input_pin) : MoistureSensor() {

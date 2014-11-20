@@ -41,6 +41,8 @@ class SensorArduino {
       // Send the new saturation percent over the network.
       float saturation_percent = moisture_sensor->get_saturation();
       communication_controller->send_saturation_level(saturation_percent);
+      //float temperature = moisture_sensor->get_temperature();
+      //communication_controller->send_temperature(temperature);
 
       delay(m_sleep_time);
     }

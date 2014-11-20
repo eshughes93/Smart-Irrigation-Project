@@ -17,6 +17,7 @@ class SerialController : public CommunicationController {
 		SerialController();
 		void update();
 		void send_saturation_level(float saturation_percent);
+		void send_temperature(float temperature);
 };
 
 #endif

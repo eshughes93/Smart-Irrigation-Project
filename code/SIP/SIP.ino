@@ -39,7 +39,8 @@ To use:
 // Include common libraries that will be used. 
 #include <Arduino.h>
 #include "generic_data_stream.h"
-#include "data_streams.h"
+#include "array_data_stream.h"
+#include "stt_data_point.h"
 #include "generic_communication_controller.h"
 #include "serial_controller.h" // specific communication controller
 

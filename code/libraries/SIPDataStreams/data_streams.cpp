@@ -1,4 +1,4 @@
-//#include "data_streams.h"
+//#include "array_data_stream.h"
 //#include "generic_data_stream.h"
 
 /*** Accepted template types ***/
