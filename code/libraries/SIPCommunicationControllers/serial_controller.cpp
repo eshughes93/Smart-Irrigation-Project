@@ -3,7 +3,7 @@
 
 SerialController::SerialController() : CommunicationController() {
 	// Set up the communication link.
-	Serial.begin(38400);
+	Serial.begin(9600);
 	Serial.println("Starting...");
 }
 

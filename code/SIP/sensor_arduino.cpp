@@ -20,9 +20,9 @@ class SensorArduino {
     //... etc.
 
     SensorArduino() {
-      m_sleep_time = 1000; // 1 seconds
+      m_sleep_time = 100; // 1 seconds
 
-			// Pins used by the SLHT5 moisture sensor.
+      // Pins used by the SLHT5 moisture sensor.
       int data_pin = 10;
       int clock_pin = 11;
       
@@ -34,7 +34,7 @@ class SensorArduino {
     }
 
     void loop(){
-			// Update the components.
+      // Update the components.
       moisture_sensor->update();
       communication_controller->update();
       

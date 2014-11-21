@@ -31,10 +31,15 @@ void SLHT5Sensor::update() {
   float temperature = m_sensor->readTemperatureF();
   char timestamp = '?';
 
-	STT_DATA_POINT* new_data = new STT_DATA_POINT(saturation,
+	STT_DATA_POINT* new_datum = new STT_DATA_POINT(saturation,
 																								temperature,
 																								timestamp);
-  m_data->add_data(new_data);
+
+	// Add it to the data stream
+  STT_DATA_POINT* old_datum = m_data->add_data(new_datum);
+
+	// The old datum is a pointer. It needs to be deleted.
+	delete old_datum;
 }
 
 SaturationType SLHT5Sensor::get_saturation() {

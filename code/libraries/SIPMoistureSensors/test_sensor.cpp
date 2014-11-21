@@ -18,7 +18,8 @@ void TestSensor::update() {
   // Read in data from the sensor
   int new_data = analogRead(m_pin);
 	float percent = 100.0 * new_data / m_potentiometer_max;
-  m_data->add_data(percent);
+  float old_datum = m_data->add_data(percent);
+	// old_datum is a float, don't need to delete
 }
 
 float TestSensor::get_saturation() {
