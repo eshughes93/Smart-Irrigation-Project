@@ -11,6 +11,7 @@ class MoistureSensor{
   public:
     virtual void update()=0;
 		virtual float get_saturation()=0;
+		virtual float get_temperature()=0;
 };
 
 #endif

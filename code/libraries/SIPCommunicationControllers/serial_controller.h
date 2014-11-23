@@ -13,6 +13,9 @@
  */
 
 class SerialController : public CommunicationController {
+	private:
+		int m_iteration;
+
   public:
 		SerialController();
 		void update();

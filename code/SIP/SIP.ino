@@ -40,7 +40,6 @@ To use:
 #include <Arduino.h>
 #include "generic_data_stream.h"
 #include "array_data_stream.h"
-//#include "stt_data_point.h"
 #include "generic_communication_controller.h"
 #include "serial_controller.h" // specific communication controller
 
