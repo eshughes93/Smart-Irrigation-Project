@@ -13,16 +13,22 @@ template<typename DataType> class DataStream;
 // slht5_adafruit_sensor.cpp file
 typedef float SaturationType;
 typedef float TemperatureType;
-//typedef char TimestampType;
+typedef int TimestampType;
+
+// Forward declare STTDataPoint and create a shorthand variable type 
+// for a pointer to it.
+template<typename Saturation, typename Temperature, typename Timestamp> class STTDataPoint;
+typedef STTDataPoint<SaturationType, TemperatureType, TimestampType>* STTDataPointPt;
 
 
 class SLHT5Sensor : public MoistureSensor{
   // A test class assuming a simple analog sensor.
   private:
     int m_data_pin, m_clock_pin;
-    DataStream<SaturationType>* m_saturation;
-    DataStream<TemperatureType>* m_temperature;
-		//DataStream<TimstampType>* m_timestamp;
+    //DataStream<SaturationType>* m_saturation;
+    //DataStream<TemperatureType>* m_temperature;
+    //DataStream<TimstampType>* m_timestamp;
+    DataStream<STTDataPointPt>* m_data;
     SHT1x* m_sensor;
   
   public:
@@ -30,7 +36,7 @@ class SLHT5Sensor : public MoistureSensor{
     void update();
     SaturationType get_saturation();
     TemperatureType get_temperature();
-    //TimestampType get_timestamp();
+    TimestampType get_timestamp();
 };
 
 #endif

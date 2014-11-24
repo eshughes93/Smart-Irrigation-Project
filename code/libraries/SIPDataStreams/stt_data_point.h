@@ -32,6 +32,10 @@ class STTDataPoint {
 		SaturationType get_saturation() { return m_saturation; }
 		TemperatureType get_temperature() { return m_temperature; }
 		TimestampType get_timestamp() { return m_timestamp; }
+
+		void set_saturation(SaturationType new_value) { m_saturation = new_value; }
+		void set_temperature(TemperatureType new_value) { m_temperature = new_value; }
+		void set_timestamp(TimestampType new_value) { m_timestamp = new_value; }
 };
 
 #endif
