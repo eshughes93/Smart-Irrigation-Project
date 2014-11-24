@@ -1,2 +1,10 @@
 *.DS_Store
-
+*.swp
+*.o
+*.ino~
+*.dia~
+*.autosave
+SHT1x-humidity-sensor
+arduino-libraries
+.~lock.*
+*_executable
