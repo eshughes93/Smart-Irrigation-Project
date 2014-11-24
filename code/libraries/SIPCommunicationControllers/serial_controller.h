@@ -13,14 +13,14 @@
  */
 
 class SerialController : public CommunicationController {
-	private:
-		int m_iteration;
+  private:
+    int m_iteration;
 
   public:
-		SerialController();
-		void update();
-		void send_saturation_level(float saturation_percent);
-		void send_temperature(float temperature);
+    SerialController();
+    void update();
+    void send_saturation_level(float saturation_percent);
+    void send_temperature(float temperature);
 };
 
 #endif
