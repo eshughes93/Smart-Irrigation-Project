@@ -64,7 +64,10 @@ To use:
   // Include libraries specific to the water Arduino
   #include "water_arduino.cpp"
   #include "generic_water_controller.h"
-  #include "water_controllers.h"
+
+  // Include the specific water controller. Don't forget to change this 
+  // the include in water_arduino.cpp if you change this one!
+  #include "test_water_controller.h"
 
   // Set the Arduino class that will be used.
   #define ARDUINO_CLASS WaterArduino

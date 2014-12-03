@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include "water_controllers.h"
+#include "test_water_controller.h"
 #include "generic_water_controller.h"
 
 TestWaterController::TestWaterController (int test_pin) : WaterController() {
