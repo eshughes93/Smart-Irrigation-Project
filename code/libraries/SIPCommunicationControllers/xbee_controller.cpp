@@ -3,7 +3,7 @@
 #include "xbee_controller.h"
 #include <Arduino.h>
 #include <stdlib.h>
-#include <time.h>
+#include <../Time/Time.h>
 
 XBee::XBee(){
   data_index = 0;

@@ -1,7 +1,7 @@
 #ifndef XBEE_CONTROLLER_H
 #define XBEE_CONTROLLER_H
 
-#include <time.h>
+#include <../Time/Time.h>
 
 class XBee {
   // Class to interface with the XBee.

@@ -42,6 +42,7 @@ To use:
 #include "array_data_stream.h"
 #include "generic_communication_controller.h"
 #include "serial_controller.h" // specific communication controller
+#include <Time.h>
 
 // Code specific to each type of Arduino.
 #if USING == SENSOR_ARDUINO
