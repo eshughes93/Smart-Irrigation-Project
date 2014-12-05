@@ -9,8 +9,15 @@ XBee::XBee(){
   data_index = 0;
 }
 
-/*
- <[saturation][temperature][timestamp]>
+/*========================================================
+  @name   send_page - sends the data packet 
+
+  @prama  sat  - moisture saturation level 
+          temp - temperature reading
+          time - time stamp 
+
+  @return none
+  @package  format - <[saturation][temperature][timestamp]>
 */
 void XBee::send_package(float sat, float temp, time_t time){
     Serial.print('<');
@@ -26,6 +33,16 @@ void XBee::send_package(float sat, float temp, time_t time){
     Serial.print('>');
 }
 
+/*========================================================
+  @name   parse_package - parses the data packet recieved 
+
+  @prama  none
+
+  @return none
+  
+  parses the package form the format "<[saturation][temperature][timestamp]>""
+  to read the saturation, temperature and timestamp into individual buffers
+*/
 void XBee::parse_package(){
     for(int i = 0; i < data_size; i++){
         Serial.print(data_in[i]);
@@ -60,6 +77,16 @@ void XBee::parse_package(){
    }
 }
 
+/*========================================================
+  @name   receive_package - gets data packet sent via wifi
+
+  @prama  none
+
+  @return none
+  
+  If data is available, the function loops and retrieves the 
+  data packet sent and stores the packet in a buffer
+*/
 void XBee::receive_package(){
     bool packet_start = false;
     bool packet_end = false;
@@ -90,21 +117,54 @@ void XBee::receive_package(){
     }
 
 }
+
+/*========================================================
+  @name  updates_last - update global variables
+
+  @prama  sat  - moisture saturation level 
+          temp - temperature reading
+          time - time stamo
+
+  @return none
+  
+  updates global variabes used to store moisture level, temperature
+  and time stamp
+*/
 void XBee::update_last(float sat, float temp, time_t stamp){
    last_sat = sat;
    last_temp = temp;
    last_time = stamp;
 }
+
+/*
+  gets private variable
+*/
 float XBee::get_saturation(){
     return last_sat;
 }
+/*
+  gets private variable
+*/
 float XBee::get_temperature(){
     return last_temp;
 }
+/*
+  gets private variable
+*/
 time_t XBee::get_timestamp(){
     return last_time;
 }
 
+/*========================================================
+  @name   interpret_dat - converts char to float
+
+  @prama  none
+
+  @return none
+  
+  converts the data values stored in the buffers to 
+  floating point values
+*/
 void XBee::interpret_data(){
    float sat = atof(sat_buffer);
    float temp = atof(temp_buffer);
@@ -119,6 +179,15 @@ void XBee::interpret_data(){
    update_last(sat,temp,t_stamp);
 }
 
+/*========================================================
+  @name   clear_data - clears buffers
+
+  @prama  none
+
+  @return none
+  
+  clears the buffer thats used to store the incoming packet
+*/
 void XBee::clear_data(){
    for(int i = 0; i < data_size; i++){
       data_in[i] = '\0';
