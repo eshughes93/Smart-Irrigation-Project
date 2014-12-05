@@ -24,10 +24,13 @@ class ArrayDataStream : public DataStream<DataType> {
     int m_max_length;
     DataType* m_data_array;
 
+    void increment_next_index();
+
   public:
     ArrayDataStream(int max_length);
 
-    void add_data(DataType new_data);
+    DataType add_data(DataType new_data); // Returns old datum to be destroyed.
+    DataType manually_update_next(); // Returns the datum to be updated. Only useful if it is a pointer.
     DataType get_last_data();
     DataType get_data(int index_from_oldest);
 
@@ -49,20 +52,62 @@ ArrayDataStream<DataType>::ArrayDataStream(int max_length):
 }
 
 template <class DataType>
-void ArrayDataStream<DataType>::add_data(DataType new_data){
-  // Add data to the data array
-  if (m_next_index < m_max_length) {
-    // Next index is within bounds of the array.
-    m_data_array[m_next_index] = new_data;
-    m_next_index++;
+DataType ArrayDataStream<DataType>::add_data(DataType new_data){
+  // Add a new datum to the data array. Returns the old datum to be 
+  // destroyed; does not check if the value is empty or not.
+  //
+  // While there are (convoluted) ways of figuring out if the template 
+  // variable is a pointer rather than a basic data type (int, float, 
+  // etc.), there is no way to know how the variable was created. 
+  // Therefore we don't know how the pointer should be deleted.
+  //
+  // Note, m_next_index will be less than m_max_length. No need to 
+  // check that this is true.
 
-    if (m_next_index == m_max_length) {
-      // Array is full, start overwriting old data...
-      m_next_index = 0;
-      m_overwriting = true;
-    }
+  // Save the old value...
+  DataType old_datum = m_data_array[m_next_index]; 
+
+  // Next index is within bounds of the array. Add new data here.
+  m_data_array[m_next_index] = new_data;
+
+  // Move the next_index
+  increment_next_index();
+  
+  // Return the old datum for deleting.
+  return old_datum;
+}
+
+template <class DataType>
+DataType ArrayDataStream<DataType>::manually_update_next(){
+  // Returns the oldest datum so it can be updated rather than adding a 
+  // new object to the array. The next index will be moved down the 
+  // array.
+  //
+  // This is only useful if the DataType is a pointer.
+  //
+  // Note, m_next_index will be less than m_max_length. No need to 
+  // check that this is true.
+
+  // Save the old value...
+  DataType old_datum = m_data_array[m_next_index]; 
+
+  // Move the next_index
+  increment_next_index();
+
+  // Return the old datum for updating.
+  return old_datum;
+}
+
+template <class DataType>
+void ArrayDataStream<DataType>::increment_next_index(){
+  m_next_index++;
+  if (m_next_index == m_max_length) {
+    // Array is full, start overwriting old data...
+    m_next_index = 0;
+    m_overwriting = true;
   }
 }
+  
 
 template <class DataType>
 DataType ArrayDataStream<DataType>::get_last_data(){

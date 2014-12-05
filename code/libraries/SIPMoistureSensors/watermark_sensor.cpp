@@ -12,5 +12,5 @@ void WatermarkSensor::update() {
 }
 
 float WatermarkSensor::get_saturation() {
-	return 0.0;
+  return 0.0;
 }

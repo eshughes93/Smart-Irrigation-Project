@@ -21,7 +21,8 @@ template<typename DataType>
 class DataStream {
   public:
     DataStream() {}
-    virtual void add_data(DataType value)=0;
+    virtual DataType add_data(DataType value)=0; // Returns the old datum to be destroyed if it is a pointer.
+    virtual DataType manually_update_next()=0; // Returns the datum to be updated. Only useful if it is a pointer.
     virtual DataType get_last_data()=0;
     virtual DataType get_data(int index_from_oldest)=0;
     virtual int get_data_count()=0;
