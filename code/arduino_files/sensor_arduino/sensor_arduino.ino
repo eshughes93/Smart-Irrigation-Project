@@ -18,7 +18,7 @@
 #include <generic_moisture_sensor.h>
 #include <slht5_adafruit_sensor.h>
 #include <watermark_sensor.h>
-
+#include <SHT1x.h>
 
 
 class SensorArduino {
