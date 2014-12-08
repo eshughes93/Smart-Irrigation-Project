@@ -41,7 +41,7 @@ class SensorArduino {
       //moisture_sensor = new TestSensor(MOISTURE_SENSOR_PIN_1);
       moisture_sensor = new SLHT5Sensor(data_pin, clock_pin);
       communication_controller = new SerialController();
-			// new solar controller? etc.
+      // new solar controller? etc.
     }
 
     void loop(){
