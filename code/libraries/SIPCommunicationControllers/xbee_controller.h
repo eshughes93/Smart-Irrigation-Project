@@ -2,8 +2,6 @@
 #define XBEE_CONTROLLER_H
 
 #include "generic_communication_controller.h"
-#include <time.h>
-
 
 class XBee: public CommunicationController {
   // Class to interface with the XBee.
@@ -15,7 +13,7 @@ class XBee: public CommunicationController {
       void send_package(float sat, float temp, time_t time);
 
     //Receiving functions
-      void receive_package();
+      bool receive_package();
 
    /*
      These getter functions only work if a package has been 
