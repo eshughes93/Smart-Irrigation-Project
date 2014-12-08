@@ -1,21 +1,26 @@
 #ifndef XBEE_CONTROLLER_H
 #define XBEE_CONTROLLER_H
 
+#include "generic_communication_controller.h"
 #include <time.h>
 
-class XBee {
+class XBee: public CommunicationController {
   // Class to interface with the XBee.
   public:
     //Constructor
       XBee();
-
+    
     //Transmitting functions
       void send_package(float sat, float temp, time_t time);
 
     //Receiving functions
       void receive_package();
 
-   //get packet data
+   /*
+     These getter functions only work if a package has been 
+     received, and information has been stored to the XBee class's
+     data. 
+   */
       float get_saturation();
       float get_temperature();
       time_t get_timestamp();
