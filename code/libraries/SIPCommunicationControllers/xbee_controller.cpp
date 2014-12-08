@@ -1,7 +1,8 @@
 //Implementation for xbee controller
 
-#include "./xbee_controller.h"
 #include <Arduino.h>
+#include <Time.h>
+#include "./xbee_controller.h"
 
 XBee::XBee(){
     Serial.begin(9600); //Set baud rate for XBees

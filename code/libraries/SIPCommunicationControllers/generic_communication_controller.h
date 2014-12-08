@@ -1,7 +1,7 @@
 #ifndef GENERIC_COMMUNICATION_CONTROLLER_H
 #define GENERIC_COMMUNICATION_CONTROLLER_H
 
-#include <time.h>
+#include <Time.h>
 
 class CommunicationController{
   // Base class for all forms of communication. Provides a standardized 
@@ -12,6 +12,8 @@ class CommunicationController{
     CommunicationController() {}
 
   public:
+		//General updating
+		virtual void update(){};
    
     //Transmitting
     virtual void send_package(float sat, float temp, time_t time)=0;
@@ -19,14 +21,11 @@ class CommunicationController{
     //Receiving
     virtual bool receive_package()=0;
     
-    //Get data after package receival
+		//Get data after package has been received
     virtual float get_saturation()=0;
     virtual float get_temperature()=0;
     virtual time_t get_timestamp()=0;
 
-    // Interface commands...
-    // Should have a way to register callbacks? What happens when a 
-    // message is received? How to alert the receiving arduino?
 };
 
 #endif
