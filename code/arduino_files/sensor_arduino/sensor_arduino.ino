@@ -3,11 +3,22 @@
 
 #include <Arduino.h>
 
-#include <generic_moisture_sensor.h>
-//#include <test_sensor.h>
-#include "slht5_adafruit_sensor.h"
+// Include Data Stream files
+#include "generic_data_stream.h"
+#include "array_data_stream.h"
+
+// Include Communication Controller files
 #include "generic_communication_controller.h"
 #include "serial_controller.h"
+//#include "xbee_controller.h"
+//#include <Time.h>
+
+// Include Moisture Sensor files
+#include "generic_moisture_sensor.h"
+//#include "test_sensor.h"
+#include <SHT1x.h>
+#include "slht5_adafruit_sensor.h"
+
 
 class SensorArduino {
   public:
@@ -30,7 +41,7 @@ class SensorArduino {
       //moisture_sensor = new TestSensor(MOISTURE_SENSOR_PIN_1);
       moisture_sensor = new SLHT5Sensor(data_pin, clock_pin);
       communication_controller = new SerialController();
-      // new solar controller? wifi_controller? etc.
+			// new solar controller? etc.
     }
 
     void loop(){
@@ -47,3 +58,9 @@ class SensorArduino {
       delay(m_sleep_time);
     }
 };
+
+// Define the functions that the Arduino will call.
+SensorArduino* arduino;
+void setup(){ arduino =  new SensorArduino(); }
+void loop(){ arduino->loop(); }
+

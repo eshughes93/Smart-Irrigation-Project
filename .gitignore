@@ -6,5 +6,6 @@
 *.autosave
 SHT1x-humidity-sensor
 arduino-libraries
+Time
 .~lock.*
 *_executable
