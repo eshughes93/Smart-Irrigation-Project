@@ -14,7 +14,7 @@ class WatermarkSensor : public MoistureSensor{
     DataStream<float>* m_data;
   
   public:
-    WatermarkSensor(int input_pin);
+    WatermarkSensor(int data_count, int input_pin);
     void update();
     float get_saturation();
 };

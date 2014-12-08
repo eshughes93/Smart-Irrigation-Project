@@ -4,7 +4,8 @@
 #include <Arduino.h>
 
 XBee::XBee(){
-  data_index = 0;
+    Serial.begin(9600); //Set baud rate for XBees
+    data_index = 0;
 }
 
 /*

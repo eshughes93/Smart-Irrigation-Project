@@ -5,7 +5,7 @@
 #include "../SIPDataStreams/array_data_stream.h"
 
 /*** TestSensor functions ***/
-TestSensor::TestSensor(int input_pin) : MoistureSensor() {
+TestSensor::TestSensor(int data_count, int input_pin) : MoistureSensor(data_count) {
   m_pin = input_pin;
   m_data = new ArrayDataStream<float>(m_max_data_count);
   m_potentiometer_max = 1023.0;

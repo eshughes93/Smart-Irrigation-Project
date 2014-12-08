@@ -32,7 +32,7 @@ class SLHT5Sensor : public MoistureSensor{
     SHT1x* m_sensor;
   
   public:
-    SLHT5Sensor(int data_pin, int clock_pin);
+    SLHT5Sensor(int data_count, int data_pin, int clock_pin);
     void update();
     SaturationType get_saturation();
     TemperatureType get_temperature();

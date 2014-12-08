@@ -7,7 +7,7 @@ class MoistureSensor{
   protected:
     int m_max_data_count;
   
-    MoistureSensor();
+    MoistureSensor(int data_count);
   public:
     virtual void update()=0;
     virtual float get_saturation()=0;

@@ -14,7 +14,7 @@ typedef int TimestampType;
 #define STT_DATA_POINT STTDataPoint<SaturationType, TemperatureType, TimestampType>
 
 /*** SLHT5Sensor functions ***/
-SLHT5Sensor::SLHT5Sensor(int data_pin, int clock_pin) : MoistureSensor() {
+SLHT5Sensor::SLHT5Sensor(int data_count, int data_pin, int clock_pin) : MoistureSensor(data_count) {
   m_data_pin = data_pin;
   m_clock_pin = clock_pin;
   m_data = new ArrayDataStream<STT_DATA_POINT*>(m_max_data_count);

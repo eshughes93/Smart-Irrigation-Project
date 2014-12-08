@@ -5,7 +5,7 @@
 #include "../SIPDataStreams/array_data_stream.h"
 
 /*** WatermarkSensor functions ***/
-WatermarkSensor::WatermarkSensor(int input_pin) : MoistureSensor(){
+WatermarkSensor::WatermarkSensor(int data_count, int input_pin) : MoistureSensor(data_count){
 }
 
 void WatermarkSensor::update() {

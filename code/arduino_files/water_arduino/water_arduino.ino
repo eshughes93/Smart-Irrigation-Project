@@ -22,7 +22,7 @@
 // Define the data types
 typedef float SaturationType;
 typedef float TemperatureType;
-typedef int TimestampType;
+typedef time_t TimestampType;
 // Create a macro for the STTDataPoint
 #define STT_DATA_POINT STTDataPoint<SaturationType, TemperatureType, TimestampType>
 
@@ -38,18 +38,19 @@ class WaterArduino {
     WaterController* water_controller;
     XBee* xbee_receiver;
     CommunicationController* communication_controller;
-    DataStream<STT_DATA_POINT_POINT>* m_data;
+    DataStream<STT_DATA_POINT*>* m_data;
     //... etc.
 
     // Member functions
     void create_datastream();
-  
+    void print_updated_values();
+    
     WaterArduino(){
-      m_sleep_time = 1000; // 1 seconds
+      m_sleep_time = 2500; // 2.5 seconds
       m_testing_pin = 13; // For testing... Light up the pin 13 blue LED
-      m_max_data_count = 50;
+      m_max_data_count = 5;
 
-      create_data_stream()
+      create_datastream();
 
       // Initialize the components of SIP
       water_controller = new TestWaterController(m_testing_pin);
@@ -66,14 +67,29 @@ class WaterArduino {
       water_controller->water_plants();
       
       //Check if package is received while calling receival function.            
-      if(!xbee_receiver->receive_package()){
+      if(xbee_receiver->receive_package()){
+        STT_DATA_POINT* data_point = m_data->manually_update_next();
+        data_point->set_saturation(xbee_receiver->get_saturation());
+        data_point->set_temperature(xbee_receiver->get_temperature());
+        data_point->set_timestamp(xbee_receiver->get_timestamp());
+        print_updated_values();
+      } else {
         Serial.println("No package received.");
       }
       delay(m_sleep_time);
     }
 };
 
-void WaterArduino::create_data_stream() {
+void WaterArduino::print_updated_values(){
+    Serial.println("Last updated values read: ");
+    Serial.print("Saturation: ");
+    Serial.println(m_data->get_last_data()->get_saturation());
+    Serial.print("Temperature: ");
+    Serial.println(m_data->get_last_data()->get_temperature());
+    Serial.print("Timestamp: ");
+    Serial.println(m_data->get_last_data()->get_timestamp());
+}
+void WaterArduino::create_datastream() {
   m_data = new ArrayDataStream<STT_DATA_POINT*>(m_max_data_count);
   for (int i=0;  i<m_max_data_count; i++){
     STT_DATA_POINT* new_datum = new STT_DATA_POINT(0, 0, 0);

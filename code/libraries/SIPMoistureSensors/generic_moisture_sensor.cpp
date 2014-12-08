@@ -1,6 +1,6 @@
 #include <Arduino.h>
 #include "generic_moisture_sensor.h"
 
-MoistureSensor::MoistureSensor() {
-  m_max_data_count = 100;
+MoistureSensor::MoistureSensor(int data_count) {
+  m_max_data_count = data_count;
 }

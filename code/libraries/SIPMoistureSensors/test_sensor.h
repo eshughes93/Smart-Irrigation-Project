@@ -15,7 +15,7 @@ class TestSensor : public MoistureSensor{
     DataStream<float>* m_data;
   
   public:
-    TestSensor(int input_pin);
+    TestSensor(int data_count, int input_pin);
     void update();
     float get_saturation();
 };
