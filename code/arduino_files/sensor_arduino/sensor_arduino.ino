@@ -66,11 +66,7 @@ public:
 
 // Define the functions that the Arduino will call.
 SensorArduino* arduino;
-void setup(){ 
-  arduino =  new SensorArduino(); 
-}
-void loop(){ 
-  arduino->loop(); 
-}
+void setup(){ arduino =  new SensorArduino(); }
+void loop(){ arduino->loop(); }
 
 

@@ -2,6 +2,7 @@
 #define TEST_SENSOR_H
 
 #include "generic_moisture_sensor.h"
+#include <Time.h>
 
 // Forward declaring the DataStream class.
 template<typename DataType> class DataStream;
@@ -18,6 +19,8 @@ class TestSensor : public MoistureSensor{
     TestSensor(int data_count, int input_pin);
     void update();
     float get_saturation();
+    float get_temperature() { return 0; }
+    time_t get_timestamp() { return 0; }
 };
 
 #endif
