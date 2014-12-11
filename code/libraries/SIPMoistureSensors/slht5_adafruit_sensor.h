@@ -19,14 +19,14 @@ typedef time_t TimestampType;
 // Forward declare STTDataPoint and create a shorthand variable type 
 // for a pointer to it.
 template<typename Saturation, typename Temperature, typename Timestamp> class STTDataPoint;
-typedef STTDataPoint<SaturationType, TemperatureType, TimestampType>* STTDataPointPt;
+typedef STTDataPoint<SaturationType, TemperatureType, TimestampType>* STTDataPointPtPtr;
 
 
 class SLHT5Sensor : public MoistureSensor{
   // A test class assuming a simple analog sensor.
   private:
     int m_data_pin, m_clock_pin;
-    DataStream<STTDataPointPt>* m_data;
+    DataStream<STTDataPointPtPtr>* m_data;
     SHT1x* m_sensor;
   
   public:

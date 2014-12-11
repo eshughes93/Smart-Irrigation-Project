@@ -7,6 +7,14 @@
 template<typename DataType> class DataStream;
 
 
+/*
+ * This class was intended to interface with the Watermark soil 
+ * moisture sensor. However, we were not able to find satisfactory 
+ * documentation and could not implement it. This class is currently an 
+ * empty, outdated shell of a class.
+ *
+ */
+
 class WatermarkSensor : public MoistureSensor{
   // Controls the Watermark Sensor (Gypsum block).
 

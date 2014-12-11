@@ -11,29 +11,47 @@ typedef float SaturationType;
 typedef float TemperatureType;
 typedef int TimestampType;
 
-typedef STTDataPoint<SaturationType, TemperatureType, TimestampType>* DataTypePt;
+typedef STTDataPoint<SaturationType, TemperatureType, TimestampType>* DataTypePtr;
 
 // Use fu(x) = x as a testing function. This way, the value in the 
 // array is also the index (or would be if the array was big enough).
 int fu (int x) { return x; }
 
-DataTypePt new_data (int x) {
+DataTypePtr new_data (int x) {
   return new STTDataPoint<SaturationType,
                           TemperatureType,
                           TimestampType>
                           (float(x)/(x+1), x*x, fu(x));
 }
 
-void add_data(DataStream<DataTypePt>* data, DataTypePt datum) {
+
+DataStream<DataTypePtr>* create_datastream (int max){
+	DataStream<DataTypePtr>* data = new ArrayDataStream<DataTypePtr>(max);
+  for (int i=0;  i<max; i++){
+    DataTypePtr new_datum = new STTDataPoint<SaturationType,
+																						 TemperatureType,
+																						 TimestampType>
+																						(0,0,0);
+    data->add_data(new_datum);
+  }
+
+	return data;
+}
+void add_data(DataStream<DataTypePtr>* data, DataTypePtr datum) {
 	// This testing file specifies the data type as a pointer, therefore, 
 	// we need to delete the old datum returned by data->add_data. The 
 	// delete operation should have no effect if old_datum is a null 
 	// pointer.
-	DataTypePt old_datum = data->add_data(datum);
-	delete old_datum;
+	//DataTypePtr old_datum = data->add_data(datum);
+	//delete old_datum;
+	DataTypePtr old_datum = data->manually_update_next();
+	old_datum->set_saturation(datum->get_saturation());
+	old_datum->set_temperature(datum->get_temperature());
+	old_datum->set_timestamp(datum->get_timestamp());
+	delete datum;
 }
 
-void print_datum(DataTypePt datum) {
+void print_datum(DataTypePtr datum) {
 	// Print a particular STT datum.
   SaturationType sat = datum->get_saturation();
   TemperatureType temp = datum->get_temperature();
@@ -46,7 +64,7 @@ void print_datum(DataTypePt datum) {
 }
 
 
-void read_back_all(DataStream<DataTypePt>* data) {
+void read_back_all(DataStream<DataTypePtr>* data) {
 	// Print the contents of the given data stream
   int data_count = data->get_data_count();
   cout << "Reading back all " << data_count << " datum using get_data." << endl;
@@ -57,7 +75,7 @@ void read_back_all(DataStream<DataTypePt>* data) {
   }
 }
 
-void read_last_datum(DataStream<DataTypePt>* data) {
+void read_last_datum(DataStream<DataTypePtr>* data) {
   cout << "Last data using get_last_data: ";
 	print_datum(data->get_last_data());
 	cout << endl;
@@ -68,7 +86,7 @@ void test_ArrayDataStream () {
 
   int max = 10;
   int x = 0; // new_data(x) will be filling the array.
-  DataStream<DataTypePt>* data = new ArrayDataStream<DataTypePt>(max);
+  DataStream<DataTypePtr>* data = create_datastream(max);
 
   cout << "Array max_length = " << data->get_max_length() << endl;
 

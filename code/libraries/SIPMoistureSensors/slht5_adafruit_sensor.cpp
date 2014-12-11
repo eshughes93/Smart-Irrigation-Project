@@ -11,6 +11,7 @@
 typedef float SaturationType;
 typedef float TemperatureType;
 typedef time_t TimestampType;
+// Define STT_DATA_POINT macro to make the rest of the code cleaner
 #define STT_DATA_POINT STTDataPoint<SaturationType, TemperatureType, TimestampType>
 
 /*** SLHT5Sensor functions ***/
@@ -19,6 +20,11 @@ SLHT5Sensor::SLHT5Sensor(int data_count, int data_pin, int clock_pin) : Moisture
   m_clock_pin = clock_pin;
   m_data = new ArrayDataStream<STT_DATA_POINT*>(m_max_data_count);
 
+	// Fill the array data stream with STTDataPoints. The idea is to fill 
+	// the array once and then update the STTDataPoint member variables 
+	// rather than replace the STTDataPoint object. Replacing the objects 
+	// can lead to a memory leak and deleting the old object isn't 
+	// working for some reason.
   for (int i=0;  i<m_max_data_count; i++){
     STT_DATA_POINT* new_datum = new STT_DATA_POINT(i, i, i);
     m_data->add_data(new_datum);
@@ -36,7 +42,9 @@ void SLHT5Sensor::update() {
   TemperatureType temperature = m_sensor->readTemperatureF();
   TimestampType timestamp = 0;
 
+	// Get the next STTDataPoint
   STT_DATA_POINT* data_point = m_data->manually_update_next();
+	// Manually update the values in that STTDataPoint
   data_point->set_saturation(saturation);
   data_point->set_temperature(temperature);
   data_point->set_timestamp(timestamp);
