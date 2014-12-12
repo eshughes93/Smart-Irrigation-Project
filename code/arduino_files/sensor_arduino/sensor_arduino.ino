@@ -32,7 +32,7 @@ public:
   //... etc.
 
   SensorArduino() {
-    m_sleep_time = 5000; // 5 seconds
+    m_sleep_time = 15000; // 15 seconds
     timestamp = 0; 
     /* Start at 0
      * Timestamp value should later be updated to reflect actual time

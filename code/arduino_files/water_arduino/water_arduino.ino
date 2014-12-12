@@ -46,7 +46,7 @@ class WaterArduino {
     void print_updated_values();
     
     WaterArduino(){
-      m_sleep_time = 2500; // 2.5 seconds
+      m_sleep_time = 15000; // 15 seconds
       m_testing_pin = 13; // For testing... Light up the pin 13 blue LED
       m_max_data_count = 5;
 
